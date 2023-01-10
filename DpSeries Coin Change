@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int sum) {
+        int n=coins.size();
+        // int dp[n+1][sum+1];
+        // for(int i=0;i<=n;i++){
+        //     dp[i][0]=0;
+        // }
+        // for(int i=1;i<=sum;i++){
+        //     dp[0][i]=INT_MAX-1;
+        // }
+        // for(int i=1;i<=n;i++){
+        //     for(int j=1;j<=sum;j++){
+        //         if(coins[i-1]<=j){
+        //             dp[i][j]=min(1+dp[i][j-coins[i-1]],dp[i-1][j]);
+        //         }
+        //         else{
+        //             dp[i][j]=dp[i-1][j];
+        //         }
+        //     }
+        // }
+        // if(dp[n][sum]>INT_MAX-3) return -1;
+        // else
+        int dp[n+1][sum+1]; //deko coins[] to i ka kam kar rai aur amountya kahe sum j ka kam kar rai
+        for(int i=0;i<=n;i++){
+            dp[i][0]=0;  //yani agr amount hi 0 to min coins required to make 0 is 0
+        }
+        for(int j=0;j<=sum;j++){
+            dp[0][j]=INT_MAX-1;   //yani agr coins 0 aur amont =11 to mini coins is INT_MX-1 why kuki quesiton mai metnon h
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=sum;j++){
+                if(coins[i-1]<=j){
+                    dp[i][j]=min(1+dp[i][j-coins[i-1]],dp[i-1][j]); //j yani amount to agr consider hua case to amount-couns[i-1] hoga
+                }else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+        }
+        if(dp[n][sum]>INT_MAX-3)return -1;
+            return dp[n][sum];
+    }
+};
