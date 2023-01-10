@@ -1,0 +1,62 @@
+class Solution {
+public:
+    // int IsSubsetSum(vector<int>&nums,int n,int sum){
+    //     int dp[n+1][sum+1];
+    //     for(int i=0;i<n+1;i++){
+    //         for(int j=0;j<sum+1;j++){
+    //             if(j==0)dp[i][j]=true;
+    //             if(i==0)dp[i][j]=false;
+    //         }
+    //     }
+    //     for(int i=1;i<n+1;i++){
+    //         for(int j=1;j<sum+1;j++){
+    //             if(nums[i-1]<=j){
+    //                 dp[i][j]=(dp[i-1][j]||dp[i-1][j-nums[i-1]]);
+    //             }
+    //             else
+    //                 dp[i][j]=dp[i-1][j];
+    //         }
+    //     }
+    //     return dp[n][sum];
+    // }
+    int helper(vector<int>&nums,int n,int sum){
+        int dp[n+1][sum+1];
+        // agr sum=0 hai to ,empty subset bhi to hove to hum to empty set partition kar dege,do empty set,
+        // jisme koi bhi element ni hoga ,to yani agr sum=0 to partion posisble hai, yani true
+        // lakin agr sum=10 and elemetns =0 so we cannot we any patition ,to humare pass jab element ni hi hai to partion kaise karenge
+        // yani partition not posible so false
+        // here i deontes elements and j denotes sum
+        for(int i=0;i<=n;i++){
+             for(int j=0;j<=sum;j++){
+                  if(j==0)dp[i][j]=true;
+                  if(i==0)dp[i][j]=false;
+             }
+        }
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=sum;j++){
+                if(nums[i-1]<=j){
+                    dp[i][j]=(dp[i-1][j] || dp[i-1][j-nums[i-1]]);
+                }
+                else{
+                    dp[i][j]=dp[i-1][j];
+                }
+            }
+        }
+       return dp[n][sum];
+    }
+    bool canPartition(vector<int>& nums) {
+        // int n=nums.size();
+        // int sum=0;
+        // for(int i=0;i<n;i++)sum+=nums[i];
+        // if(sum%2!=0)return false;
+        // return IsSubsetSum(nums,n,sum/2);
+        int sum=0;
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+            sum+=nums[i];
+        }
+        if(sum%2!=0)return false;//agr sum odd hai to we cannot make any partition
+        return helper(nums,n,sum/2);
+    }
+
+};
