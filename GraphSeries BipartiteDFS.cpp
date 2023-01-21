@@ -1,4 +1,5 @@
-bool dfsBipart(vector<vector<int>>& graph,int src,vector<int>&color){
+// ye bfs hai glti se dfs raka gya file ka naam
+bool bfsBipart(vector<vector<int>>& graph,int src,vector<int>&color){
         color[src]=1;
         queue<int>q;
         q.push(src);
@@ -19,7 +20,7 @@ bool dfsBipart(vector<vector<int>>& graph,int src,vector<int>&color){
         vector<int>color(n,-1);
         for(int i=0;i<graph.size();i++){
             if(color[i]==-1){
-                if(dfsBipart(graph,i,color)==false)
+                if(bfsBipart(graph,i,color)==false)
                     return false;
             }
         }
