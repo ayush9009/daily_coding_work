@@ -1,24 +1,30 @@
-bool findTarget(TreeNode* root, int k) {
-        if(root==NULL)return false;
-        queue<TreeNode*>q;
-        q.push(root);
-        
-        vector<int>result;
-        while(q.empty()==false){
-            TreeNode* cur=q.front();
-            q.pop();
-            if(cur!=NULL)result.push_back(cur->val);
-            if(cur->left!=NULL)q.push(cur->left);
-            if(cur->right!=NULL)q.push(cur->right);
+//optimised Solution 
+//tc:O(nlogn)
+//sc:O(1)
+class Solution{
+  public:
+    vector<int>result;
+    void helper(struct Node *root){
+        if(root!=NULL){
+            helper(root->left);
+            result.push_back(root->data);
+            helper(root->right);
         }
-        int flag=0;
-        for(int i=0;i<result.size();i++){
-            for(int j=i+1;j<result.size();j++){
-                if(result[i]+result[j]==k){
-                    flag=1;
-                    break;
-                }
-            }
-        }
-        return flag;
     }
+    int isPairPresent(struct Node *root, int target)
+    {
+    helper(root);
+    int flag=0;
+    sort(result.begin(),result.end());
+    int l=0,r=result.size()-1;
+    while(l<r){
+        if(result[l]+result[r]==target)
+        {
+            flag=1;
+            break;
+        }else if(result[l]+result[r]<target)l=l+1;
+        else r=r-1;
+    }
+    return flag;
+    }
+};
