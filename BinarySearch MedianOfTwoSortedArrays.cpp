@@ -1,36 +1,43 @@
 class Solution {
 public:
-    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-    //     for(int i=0;i<nums2.size();i++)
-    //     {
-    //         nums1.push_back(nums2[i]);
-    //     }
-    //     sort(nums1.begin(),nums1.end());
-    // int m;
-    // double r;
-    // if(nums1.size()%2!=0){
-    //  m=nums1.size()/2;
-    //  r=nums1[m]*1.0;
-    // }
-    // else{
-    //     m=nums1.size()/2;
-    //     r=(nums1[m]+nums1[m-1])/2.0;
-    // }
-    // return r;
-    // }
-    for(int i=0;i<nums2.size();i++){
-        nums1.push_back(nums2[i]);
+     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
+        int n1=nums1.size();
+        int n2=nums2.size();
+        
+        if(n2<n1) return findMedianSortedArrays(nums2,nums1);
+
+        int low=0,high=n1;
+
+        
+
+        while(low<=high){
+            int cut1=(low+high)>>1;  //(low+high)/2
+
+            int cut2=(n1+n2+1)/2 -cut1; 
+            
+            int left1=cut1==0 ? INT_MIN : nums1[cut1-1];  //maxmimu elemnt of aray1
+
+            int left2=cut2==0? INT_MIN : nums2[cut2-1];
+
+            int right1=cut1==n1 ? INT_MAX : nums1[cut1];
+            int right2=cut2==n2 ? INT_MAX : nums2[cut2];
+
+            if(left1<=right2 && left2<=right1){
+                if((n1+n2)%2==0)  //means even length
+                return (max(left1,left2) + min(right1,right2))/2.0;
+
+                else 
+                return max(left1,left2);
+            }else if(left1>right2){
+                high=cut1-1;
+            }else{
+                low=cut1+1;
+            }
+
+            
+        }
+        return 0.0;
     }
-    sort(nums1.begin(),nums1.end());
-    int m;
-    double r;
-    if(nums1.size()%2!=0){
-        m=nums1.size()/2;
-        r=nums1[m]*1.0;
-    }else{
-        m=nums1.size()/2;
-        r=(nums1[m]+nums1[m-1])/2.0;
-    }
-    return r;
-    }
+    
+
 };
