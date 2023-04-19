@@ -50,5 +50,5 @@ int main()
             cin >> arr[i];
         cout << largestMinimumDistance(arr, n, cows);
     }
-    return 0;
+    return 0
 }
