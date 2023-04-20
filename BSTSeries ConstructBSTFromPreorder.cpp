@@ -45,6 +45,6 @@ public:
             TreeNode *p=new TreeNode(preorder[i]);
             insert(&cur,p);
         }
-        return cur;
+        return cur
     }
 };
