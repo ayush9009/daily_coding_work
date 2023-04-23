@@ -5,7 +5,7 @@ int findCeil(BinaryTreeNode<int> *node, int x){
     queue<BinaryTreeNode<int>*>q;
     q.push(root);
     while(q.empty()==false){
-        BinaryTreeNode<int>*cur=q.front();
+        BinaryTreeNode<int>*cur=q.front()
         q.pop();
         result.push_back(cur->data)
         if(cur->left)q.push(cur->left);
