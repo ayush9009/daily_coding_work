@@ -3,7 +3,7 @@ public:
     bool wordPattern(string p, string s) {
         vector<string> v;
         stringstream ss(s);
-        string str;
+        string str
         
         while(ss >> str)
             v.push_back(str)
