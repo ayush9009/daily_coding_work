@@ -6,7 +6,7 @@ public:
         string str;
         
         while(ss >> str)
-            v.push_back(str);
+            v.push_back(str)
         
         if(p.size() != v.size()) return false;
      
