@@ -13,7 +13,7 @@ int maxIncreasingDumbbellsSum(vector<int> &nums, int n)
         }
     }
     int mx=0;
-    for(auto it:dp){
+    for(auto it:dp){n
         mx=max(it,mx);
     }
     return mx;
