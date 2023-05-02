@@ -3,7 +3,7 @@ int maxIncreasingDumbbellsSum(vector<int> &nums, int n)
 	// Write your code here
     int dp[n];
     for(int i=0;i<n;i++){
-        dp[i]=nums[i];
+        dp[i]=nums[i];\
     }
     for(int i=1;i<n;i++){
         for(int j=0;j<i;j++){
