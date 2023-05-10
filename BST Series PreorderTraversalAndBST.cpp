@@ -9,7 +9,7 @@ class Solution {
        stack<int>s;
        int root=INT_MIN;
        for(int i=0;i<n;i++){
-           if(arr[i]<root)return false
+           if(arr[i]<root)return false;
            while(s.empty()==false && s.top()<arr[i]){
                root=s.top();  //stack ki madath se greater element milta jara
                s.pop();//aur root mai miinimuma assign hojara,agr arr[i]<root to fasle
