@@ -1,5 +1,5 @@
 class Solution {
-  public
+  public:
     int canRepresentBST(int arr[], int n) {
         
         // jaise 40 30 35 80 100
