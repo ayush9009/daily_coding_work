@@ -1,4 +1,4 @@
- stack<TreeNode*>st
+ stack<TreeNode*>st;
      void pushAll(TreeNode*root){
          TreeNode*cur=root;
          while(cur!=NULL){
