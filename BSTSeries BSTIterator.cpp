@@ -2,7 +2,7 @@
      void pushAll(TreeNode*root){
          TreeNode*cur=root
          while(cur!=NULL){
-             st.push(cur);
+             st.push(cur)
              cur=cur->left;
          }
      }
